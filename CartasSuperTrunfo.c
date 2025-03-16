@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das Cartas
@@ -26,6 +27,8 @@ int main()
     float Carta01_area;
     float Carta01_pib;
     int Carta01_numPontosTuristicos;
+    float Carta01_densidadePopulacional;
+    float Carta01_pibPerCapita;
 
     //entradas pelo o usuário para a carta 1:
     printf("Digite o estado (de 'A' a 'H'): \n");
@@ -34,7 +37,7 @@ int main()
     printf("Digite o código da carta (ex: A01, B03): \n");
     scanf("%3s",Carta01_codigo);
 
-    getchar();
+    getchar(); // libera o \n deixado pelo scanf anterior.
     printf("Digite o nome da cidade: \n");
     fgets(Carta01_nome,25,stdin);
     Carta01_nome[strcspn(Carta01_nome, "\n")] = 0;
@@ -50,10 +53,12 @@ int main()
 
     printf("Digite o número de pontos turísticos: \n");
     scanf("%d",&Carta01_numPontosTuristicos);
-    getchar();
+    getchar(); // libera o \n deixado pelo scanf anterior.
+
+    Carta01_densidadePopulacional = (float)Carta01_populacao/Carta01_area; // calcula a densidade
+    Carta01_pibPerCapita = (Carta01_pib * pow(10,9)) / (float)Carta01_populacao; //calcula o pib per capita com o valor do pib sendo multiplicado por 10^9(bilhão)
+
     printf("\n");   
-
-
     printf("Realize o cadastro da carta 2: \n\n");
 
     //propriedades da carta 2:
@@ -64,6 +69,8 @@ int main()
     float Carta02_area;
     float Carta02_pib;
     int Carta02_numPontosTuristicos;
+    float Carta02_densidadePopulacional;
+    float Carta02_pibPerCapita;
 
     //entradas pelo o usuário para a carta 2:
     printf("Digite o estado (de 'A' a 'H'): \n");
@@ -72,7 +79,7 @@ int main()
     printf("Digite o código da carta (ex: A01, B03): \n");
     scanf("%3s",Carta02_codigo);
 
-    getchar();
+    getchar(); // libera o \n deixado pelo scanf anterior.
     printf("Digite o nome da cidade: \n");
     fgets(Carta02_nome,25,stdin);
     Carta02_nome[strcspn(Carta02_nome, "\n")] = 0;
@@ -88,7 +95,9 @@ int main()
 
     printf("Digite o número de pontos turísticos: \n");
     scanf("%d",&Carta02_numPontosTuristicos);
-    getchar();
+    getchar(); // libera o \n deixado pelo scanf anterior.
+    Carta02_densidadePopulacional= (float)Carta02_populacao/Carta02_area; // calcula a densidade
+    Carta02_pibPerCapita = (Carta02_pib * pow(10,9)) / (float)Carta02_populacao; //calcula o pib per capita com o valor do pib sendo multiplicado por 10^9(bilhão)
 
     printf("\n"); 
 
@@ -101,6 +110,8 @@ int main()
     printf("População: %d \n", Carta01_populacao);
     printf("Área: %.2f km²\n", Carta01_area);
     printf ("PIB: %.2f bilhões de reais \n\n", Carta01_pib);
+    printf ("Densidade Populacional: %.2f hab/km² \n\n", Carta01_densidadePopulacional);
+    printf ("PIB per Capita: %.2f reais \n\n", Carta01_pibPerCapita);
 
     printf("Carta 2:\n");
     printf("Estado: %c \n", Carta02_estado);
@@ -109,6 +120,8 @@ int main()
     printf("População: %d \n", Carta02_populacao);
     printf("Área: %.2f km²\n", Carta02_area);
     printf ("PIB: %.2f bilhões de reais \n\n", Carta02_pib);
+    printf ("Densidade Populacional: %.2f hab/km² \n\n", Carta02_densidadePopulacional);
+    printf ("PIB per Capita: %.2f reais \n\n", Carta02_pibPerCapita);
 
      
     return 0;
