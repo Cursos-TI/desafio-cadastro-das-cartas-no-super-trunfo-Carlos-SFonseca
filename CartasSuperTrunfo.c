@@ -137,14 +137,15 @@ int main()
     printf("Super Poder: %.2f  \n\n", Carta02_superPoder);
 
     // comparando as cartas
-    printf("Comparação de Cartas:\n\n");
-    printf("População: Carta 1 venceu (%d)\n",Carta01_populacao>Carta02_populacao);
-    printf("Área: Carta 1 venceu (%d)\n",Carta01_area>Carta02_area);
-    printf("PIB: Carta 1 venceu (%d)\n",Carta01_pib>Carta02_pib);
-    printf("Pontos Turísticos: Carta 1 venceu (%d)\n",Carta01_numPontosTuristicos>Carta02_numPontosTuristicos);
-    printf("Densidade Populacional: Carta 1 venceu (%d)\n",Carta01_densidadePopulacional<Carta02_densidadePopulacional);
-    printf("PIB per Capita: Carta 1 venceu (%d)\n", Carta01_pibPerCapita>Carta02_pibPerCapita);
-    printf("Super Poder: Carta 1 venceu (%d)\n", Carta01_superPoder>Carta02_superPoder);
+    printf("Comparação de Cartas(Atributo: População):\n\n");
+    printf("Carta 1 - %s: %lu\n",Carta01_nome,Carta01_populacao);
+    printf("Carta 2 - %s: %lu\n",Carta02_nome,Carta02_populacao);
+    if(Carta01_populacao>Carta02_populacao){
+        printf("Resultado: Carta 1 (%s) venceu!\n",Carta01_nome);
+    }else{
+        printf("Resultado: Carta 2 (%s) venceu!\n",Carta02_nome);
+    }
+    
     printf("\n\n");
 
     return 0;
