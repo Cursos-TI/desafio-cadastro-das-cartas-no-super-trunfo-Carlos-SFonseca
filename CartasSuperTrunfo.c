@@ -8,12 +8,45 @@
 // Siga os comentários para implementar cada parte do desafio.
 // Teste larissa
 
+int CompareAtributo(float atributoCarta01, float atributoCarta02)
+{ // função para comparar os atributos
+
+    if (atributoCarta01 > atributoCarta02)
+    {
+        return 1;
+    }
+    else if (atributoCarta01 < atributoCarta02)
+    {
+        return 2;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void ExibeResultado(int resultadoComparado, char nomeCarta01[], char nomeCarta02[])
+{ // função para exibir o resultado da comparação de atributos
+    if (resultadoComparado == 1)
+    {
+        printf("Resultado: Carta 1 (%s) venceu!\n", nomeCarta01);
+    }
+    else if (resultadoComparado == 2)
+    {
+        printf("Resultado: Carta 2 (%s) venceu!\n", nomeCarta02);
+    }
+    else
+    {
+        printf("Resultado: Empate!\n");
+    }
+}
+
 float CalculaSuperPoder(unsigned long int populacao, float area, float pib,
                         int numPontosTuristicos, float densidadePopulacional, float pibPerCapita)
-{
+{ // função para calcular o super poder da carta
     float resultado = (float)populacao + area + pib + (float)numPontosTuristicos + (1 / densidadePopulacional) + pibPerCapita;
     return resultado;
-} // faz o calculo do valor do super poder da carta
+}
 
 int main()
 {
@@ -109,7 +142,7 @@ int main()
     Carta02_densidadePopulacional = (float)Carta02_populacao / Carta02_area;      // calcula a densidade
     Carta02_pibPerCapita = (Carta02_pib * pow(10, 9)) / (float)Carta02_populacao; // calcula o pib per capita com o valor do pib sendo multiplicado por 10^9(bilhão)
     Carta02_superPoder = CalculaSuperPoder(Carta02_populacao, Carta02_area, Carta02_pib, Carta02_numPontosTuristicos, Carta02_densidadePopulacional, Carta02_pibPerCapita);
-    
+
     printf("\n");
 
     // exibindo as cartas
@@ -121,6 +154,7 @@ int main()
     printf("População: %lu \n", Carta01_populacao);
     printf("Área: %.2f km²\n", Carta01_area);
     printf("PIB: %.2f bilhões de reais \n", Carta01_pib);
+    printf("Números de pontos turísticos: %d \n", Carta01_numPontosTuristicos);
     printf("Densidade Populacional: %.2f hab/km² \n", Carta01_densidadePopulacional);
     printf("PIB per Capita: %.2f reais \n", Carta01_pibPerCapita);
     printf("Super Poder: %.2f  \n\n", Carta01_superPoder);
@@ -132,20 +166,86 @@ int main()
     printf("População: %lu \n", Carta02_populacao);
     printf("Área: %.2f km²\n", Carta02_area);
     printf("PIB: %.2f bilhões de reais \n", Carta02_pib);
+    printf("Números de pontos turísticos: %d \n", Carta02_numPontosTuristicos);
     printf("Densidade Populacional: %.2f hab/km² \n", Carta02_densidadePopulacional);
     printf("PIB per Capita: %.2f reais \n", Carta02_pibPerCapita);
     printf("Super Poder: %.2f  \n\n", Carta02_superPoder);
 
-    // comparando as cartas
-    printf("Comparação de Cartas(Atributo: População):\n\n");
-    printf("Carta 1 - %s: %lu\n",Carta01_nome,Carta01_populacao);
-    printf("Carta 2 - %s: %lu\n",Carta02_nome,Carta02_populacao);
-    if(Carta01_populacao>Carta02_populacao){
-        printf("Resultado: Carta 1 (%s) venceu!\n",Carta01_nome);
-    }else{
-        printf("Resultado: Carta 2 (%s) venceu!\n",Carta02_nome);
-    }
+    // menu de atributos para comparação
+    int escolha;
+    int resultado;
+    printf("Escolha o atributo a ser comparado:\n\n");
+    printf("Digite 1 para comparar a População.\n");
+    printf("Digite 2 para comparar a Área.\n");
+    printf("Digite 3 para comparar o PIB.\n");
+    printf("Digite 4 para comparar o Número de Pontos Turísticos.\n");
+    printf("Digite 5 para comparar a Densidade Populacional.\n");
+    printf("Digite 6 para comparar o PIB per Capita.\n");
+    printf("Digite 7 para comparar o Super Poder.\n");
+    scanf("%d", &escolha);
+
+    switch (escolha)
+    {
+    case 1:
+        printf("Comparação de Cartas(Atributo: População):\n\n");
+        printf("Carta 1 - %s: %lu\n", Carta01_nome, Carta01_populacao);
+        printf("Carta 2 - %s: %lu\n", Carta02_nome, Carta02_populacao);
+        resultado = CompareAtributo((float)Carta01_populacao, (float)Carta02_populacao); // converte o atributo para float, pois a função recebe float como parâmetro
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+
+    case 2:
+        printf("Comparação de Cartas(Atributo: Área):\n\n");
+        printf("Carta 1 - %s: %.2f km²\n", Carta01_nome, Carta01_area);
+        printf("Carta 2 - %s: %.2f km²\n", Carta02_nome, Carta02_area);
+        resultado = CompareAtributo(Carta01_area,Carta02_area);
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
     
+    case 3:
+        printf("Comparação de Cartas(Atributo: PIB):\n\n");
+        printf("Carta 1 - %s: %.2f bilhões de reais\n", Carta01_nome, Carta01_pib);
+        printf("Carta 2 - %s: %.2f bilhões de reais\n", Carta02_nome, Carta02_pib);
+        resultado = CompareAtributo(Carta01_pib,Carta02_pib);
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+
+    case 4:
+        printf("Comparação de Cartas(Atributo: Número de Pontos Turísticos):\n\n");
+        printf("Carta 1 - %s: %d\n", Carta01_nome, Carta01_numPontosTuristicos);
+        printf("Carta 2 - %s: %d\n", Carta02_nome, Carta02_numPontosTuristicos);
+        resultado = CompareAtributo((float)Carta01_numPontosTuristicos,(float)Carta02_numPontosTuristicos); // converte o atributo para float, pois a função recebe float como parâmetro
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+    
+    case 5:
+        printf("Comparação de Cartas(Atributo: Densidade Populacional):\n\n");
+        printf("Carta 1 - %s: %.2f hab/km²\n", Carta01_nome, Carta01_densidadePopulacional);
+        printf("Carta 2 - %s: %.2f hab/km²\n", Carta02_nome, Carta02_densidadePopulacional);
+        resultado = CompareAtributo(1/Carta01_densidadePopulacional, 1/Carta02_densidadePopulacional); // compara o inverso da densidade, pois a menor vence
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+
+    case 6:
+        printf("Comparação de Cartas(Atributo: PIB per Capita):\n\n");
+        printf("Carta 1 - %s: %.2f reais\n", Carta01_nome, Carta01_pibPerCapita);
+        printf("Carta 2 - %s: %.2f reais\n", Carta02_nome, Carta02_pibPerCapita);
+        resultado = CompareAtributo(Carta01_pibPerCapita, Carta02_pibPerCapita);
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+
+    case 7:
+        printf("Comparação de Cartas(Atributo: Super Poder):\n\n");
+        printf("Carta 1 - %s: %.2f \n", Carta01_nome, Carta01_superPoder);
+        printf("Carta 2 - %s: %.2f \n", Carta02_nome, Carta02_superPoder);
+        resultado = CompareAtributo(Carta01_superPoder, Carta02_superPoder);
+        ExibeResultado(resultado,Carta01_nome, Carta02_nome);
+        break;
+
+    default:
+        break;
+    }
+
     printf("\n\n");
 
     return 0;
